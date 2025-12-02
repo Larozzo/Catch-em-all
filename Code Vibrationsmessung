@@ -1,21 +1,11 @@
 from machine import Pin
 import time
-
-# GPIO-Pins deiner 6 Vibrationssensoren
-sensor_pins = [2, 4, 5, 7, 8, 9]
-
-sensors = [Pin(p, Pin.IN, Pin.PULL_DOWN) for p in sensor_pins]
-
-print("Starte Vibrationsmessung ...")
-
+ 
+sensor = Pin(4, Pin.IN, Pin.PULL_DOWN) #G2 und G4 sind zu verwenden
+  
 while True:
-    values = [s.value() for s in sensors]
 
-    if any(values):  
-        # Mindestens 1 Sensor erkennt Vibration
-        print("Sensorwerte:", values)
-    else:
-        # Alle Sensoren sind 0
-        print("keine Vibration erkannt")
+    value = sensor.value()   # 0 = keine Vibration, 1 = Vibration
+    print("Vibration:", value)
 
     time.sleep(0.1)
