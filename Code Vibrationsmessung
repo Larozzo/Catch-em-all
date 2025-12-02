@@ -9,3 +9,39 @@ while True:
     print("Vibration:", value)
 
     time.sleep(0.1)
+
+from machine import Pin, ticks_ms
+import time
+
+# GPIO-Pins deiner 6 Vibrationssensoren
+sensor_pins = [2, 4, 5, 7, 8, 9]
+sensors = [Pin(p, Pin.IN, Pin.PULL_DOWN) for p in sensor_pins]
+
+def timestamp():
+    """Zeitstempel in Sekunden seit Programmstart."""
+    return ticks_ms() // 1000
+
+print("Starte 3 Messrunden...")
+
+for runde in range(1, 4):
+
+    print("\n--- Starte Messrunde", runde, "(15 Sekunden) ---")
+    start = ticks_ms()
+
+    while (ticks_ms() - start) < 15000:   # 15 Sekunden Messzeit
+        values = [s.value() for s in sensors]
+        ts = timestamp()
+
+        if any(values):
+            print("[", ts, "s ] Sensorwerte:", values)
+        else:
+            print("[", ts, "s ] keine Vibration erkannt")
+
+        time.sleep(0.1)   # Abtastrate 10 Hz
+
+    # Nach 15 Sekunden → Pause
+    if runde < 3:
+        print("\n--- Pause 10 Sekunden ---")
+        time.sleep(10)
+
+print("\nAlle 3 Messrunden abgeschlossen.")
