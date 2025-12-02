@@ -1,1 +1,10 @@
+📖 Documentation
+💻 Usage
 
+To use this library you can import the modulino module along with the desired classes which give you access to the different modulinos. For example:
+
+from modulino import ModulinoPixels
+
+pixels = ModulinoPixels()
+
+Once the desired object is obtained you can call functions and query properties on these objects such as pixels.set_all_rgb(255, 0, 0).
