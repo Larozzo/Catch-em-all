@@ -1,0 +1,61 @@
+from time import sleep
+from machine import I2C
+from i2c_lcd import RGBDisplay
+import time
+
+i2c_bus = I2C(1)
+display = RGBDisplay(i2c_bus)
+display.clear()
+
+full_block = [
+    0b11111,
+    0b11111,
+    0b11111,
+    0b11111,
+    0b11111,
+    0b11111,
+    0b11111,
+    0b11111
+]
+
+def typewriter(text, col, row, char_delay=0.08):
+    display.move(col, row)
+    for ch in text:
+        display.write(ch)
+        sleep(char_delay)
+
+BAR_CHAR = chr(255)   # ggf. mal mit '*' oder '#' vergleichen
+
+def show_progress_bar(fraction, row=1, width=16):
+    if fraction < 0:
+        fraction = 0
+    if fraction > 1:
+        fraction = 1
+
+    filled = int(width * fraction + 0.5)
+    bar = BAR_CHAR * filled + " " * (width - filled)
+
+    display.move(0, row)
+    display.write(bar)
+
+def countdown_bar(seconds=15, row=1):
+    total_ms = seconds * 1000
+    start = time.ticks_ms()
+
+    while True:
+        now = time.ticks_ms()
+        elapsed = time.ticks_diff(now, start)
+
+        if elapsed >= total_ms:
+            break
+
+        remaining = total_ms - elapsed
+        fraction = remaining / total_ms
+        show_progress_bar(fraction, row=row)
+        time.sleep_ms(100)
+
+    show_progress_bar(0, row=row)
+
+display.clear()
+typewriter("Wurf 3:", 0, 0)   # Zeile 1
+countdown_bar(seconds=15, row=1)  # Zeile 2 Timer

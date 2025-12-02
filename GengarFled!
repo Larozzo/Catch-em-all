@@ -1,0 +1,19 @@
+from time import sleep
+from machine import I2C
+from i2c_lcd import RGBDisplay
+
+i2c_bus = I2C(1)
+display = RGBDisplay(i2c_bus)
+display.clear()
+
+def typewriter(text, col, row, char_delay=0.08):
+    display.move(col, row)
+    for ch in text:
+        display.write(ch)
+        sleep(char_delay)
+
+display.clear()
+
+typewriter("Oh No!", 0, 0)   # Zeile 1
+sleep(0.7)
+typewriter("Gengar fled!", 0, 1)   # Zeile 2
