@@ -1,1 +1,97 @@
+import network
+import espnow
+from machine import Pin, ticks_ms
+import time
+
+#mac-adresse: 
+
+# -----------------------------
+# BUTTONS
+# -----------------------------
+button_start = Pin("A0", Pin.IN, Pin.PULL_UP)
+button_stop  = Pin("A1", Pin.IN, Pin.PULL_UP)
+
+# -----------------------------
+# Vibrationssensoren
+# -----------------------------
+sensor_pins = [2, 4, 5, 7, 8, 9]
+sensors = [Pin(p, Pin.IN, Pin.PULL_DOWN) for p in sensor_pins]
+
+def timestamp():
+    return ticks_ms() // 1000
+
+# -----------------------------
+# ESP-NOW Setup
+# -----------------------------
+wlan = network.WLAN(network.STA_IF)
+wlan.active(True)
+
+e = espnow.ESPNow()
+e.active(True)
+
+# Empfänger-MAC (Board 1)
+peer_mac = b'tM\xbd\xa1\xe5T'   # 74:4D:BD:A1:E5:54
+e.add_peer(peer_mac)
+
+def send(msg):
+    try:
+        e.send(peer_mac, msg)
+    except:
+        print("Fehler beim Senden:", msg)
+
+# -----------------------------
+# Warte auf Start-Button
+# -----------------------------
+print("Bereit. Drücke START.")
+send("BEREIT")
+
+while button_start.value() == 1:
+    time.sleep(0.05)
+
+print("→ Messung STARTET")
+send("START")
+
+# -----------------------------
+# 3 Messrunden
+# -----------------------------
+for runde in range(1, 4):
+    print("\n--- Runde", runde, "gestartet ---")
+    send("RUNDE_START " + str(runde))
+
+    start = ticks_ms()
+
+    while (ticks_ms() - start) < 15000:
+        # Stop prüfen
+        if button_stop.value() == 0:
+            print("→ STOP gedrückt!")
+            send("STOP")
+            raise SystemExit
+
+        values = [s.value() for s in sensors]
+        ts = timestamp()
+
+        if any(values):
+            msg = f"VIBRATION {ts} {values}"
+            print(msg)
+            send(msg)
+        else:
+            send("KEINE_VIBRATION")
+
+        time.sleep(0.1)
+
+    print("Runde fertig.")
+    send("RUNDE_FERTIG " + str(runde))
+
+    if runde < 3:
+        print("--- 10s Pause ---")
+        send("PAUSE")
+        for _ in range(100):
+            if button_stop.value() == 0:
+                print("→ STOP gedrückt!")
+                send("STOP")
+                raise SystemExit
+            time.sleep(0.1)
+
+send("ALLE_FERTIG")
+print("Alle Messrunden abgeschlossen.")
 
