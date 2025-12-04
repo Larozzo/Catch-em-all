@@ -114,7 +114,7 @@ def catched():
 def victory():
     display.clear()        
     typewriter("You Won!", 0, 0)
-    print("You catched Gengar")
+    print("You catched Gengar!")
     player.play_track(1, 5)
 
     # ----------------------------
@@ -184,7 +184,7 @@ def spiel():
 
         # LCD Anzeige
         display.clear()
-        typewriter(f"Wurf {w}:", 0, 0)
+        typewriter(f"Throw {w}:", 0, 0)
 
         print(f"--- Wurf {w}: du hast 10 Sekunden ---")
 
