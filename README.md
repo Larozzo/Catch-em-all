@@ -37,10 +37,15 @@ To build this project you will need:
 
 ## How to build
 ### Wiring
+* Dual Buttons
 ![Press Dual Buttons to Start](https://github.com/Larozzo/Catch-em-all/blob/76a4e0d389145904dd29655b7087b15533ca5415/pictures/Dual%20Buttons.jpg)
-![Start Display]([pictures/Start Display.jpg](https://github.com/Larozzo/Catch-em-all/blob/f1535e024d39d02377e60e87431e8f6817ea4fc2/pictures/Start%20Display.jpg)
+* LCD Display
+![Start Display](https://github.com/Larozzo/Catch-em-all/blob/f1535e024d39d02377e60e87431e8f6817ea4fc2/pictures/Start%20Display.jpg)
+* Wiring inside of 3D build
 ![Wiring inside of Pokémon](https://github.com/Larozzo/Catch-em-all/blob/b6b8ff1ec760a5701bde9f4db79130d1c2a10b1c/pictures/Wiring%20inside%20of%20Poke%CC%81mon.jpg)
+* Vibrationsensor inside false-bottom box
 ![Vibrationsensor false-bottom box](pictures/Vibrationsensor.jpg)
+* cable connector
 ![connect cables with a cable connector](https://github.com/Larozzo/Catch-em-all/blob/b6b8ff1ec760a5701bde9f4db79130d1c2a10b1c/pictures/cable%20connector.jpg)
 
 
