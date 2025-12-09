@@ -52,7 +52,7 @@ def show_progress_bar(fraction, row=1, width=16):
 # ============================================================
 uart = UART(0, tx=Pin("TX"), rx=Pin("RX"))
 player = DFPlayer(uart)
-player.volume = 100
+player.volume = 75
 
 
 # ============================================================
@@ -78,7 +78,7 @@ def hit(times=5, speed=0.3):
     print("Gengar hit")
     player.play_track(1, 4)
     for i in range(times):
-        pixels.set_all_rgb(0, 255, 0)
+        pixels.set_all_rgb(0, 0, 255)
         pixels.show()
         sleep(speed)
         pixels.set_all_rgb(0, 0, 0)
@@ -87,8 +87,8 @@ def hit(times=5, speed=0.3):
 
 def waiting(times=3, speed=0.3):
     display.clear()        
-    typewriter("Waiting for", 0, 0)
-    typewriter("results...", 0, 1)
+    typewriter("Gengar tries", 0, 0)
+    typewriter("to escape...", 0, 1)
     print("waiting for results")
     player.play_track(1, 6)
     for i in range(times):
@@ -194,30 +194,36 @@ def spiel():
 
         # ------------ Gemeinsame Schleife: LCD + Sensor parallel ------------
         while True:
-            now = time.ticks_ms()
-            elapsed = time.ticks_diff(now, wurf_start)
+            now = time.ticks_ms() #aktuelle Zeit
+            elapsed = time.ticks_diff(now, wurf_start) #vergangene Zeit
 
-            # LCD Fortschritt aktualisieren
+            # LCD Fortschritt aktualisieren Fortschrittsbalken
             fraction = 1 - (elapsed / countdown_time)
             show_progress_bar(fraction, row=1)
 
             # Sensor checken
             values = [s.value() for s in sensors]
-            if any(values):
+            if any(values): #Vibration erkannt
                 print(f"🎯 Wurf {w} erkannt! (+30%)")
                 gesamt += 30
                 blink_pixel()
                 wurf_erkannt = True
                 break
 
-            # Zeit abgelaufen
+            # Zeit abgelaufen, Keine Vibration erkannt
             if elapsed >= countdown_time:
                 print(f"⏳ Wurf {w}: keine Vibration → 0%")
+                pixels.set_all_rgb(255, 0, 0)
+                pixels.show()
+                sleep(0.5)
+                pixels.set_all_rgb(0, 0, 0)
+                pixels.show()
+
                 break
 
             sleep(0.05)
 
-        sleep(0.5)
+        sleep(0.5) 
 
     # --------------------------------------
     # Ende der Würfe: Ergebnisphase
@@ -234,10 +240,10 @@ def spiel():
     hit(times=5, speed=0.3)
     waiting(times=3, speed=0.75)
 
-    zufall = random.randint(0, 100)
+    zufall = random.randint(0, 100) #zufällige Zahl
     print("Zufallswert:", zufall)
 
-    if gesamt >= zufall:
+    if gesamt >= zufall: #gesamt Punktzahl grösser als Zufallszahl
         print("\n🎉 GEWONNEN! 🎉")
         catched()
         victory()
@@ -257,7 +263,7 @@ if __name__ == "__main__":
     display.clear()
     typewriter("The game starts,", 0, 0)
     typewriter("Be ready", 0, 1)
-    sleep(3)  # 3 Sekunden warten
+    sleep(2)  # 3 Sekunden warten
 
     print("System bereit – warte auf START...\n")
     spiel()
