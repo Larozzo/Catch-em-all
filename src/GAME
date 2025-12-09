@@ -26,6 +26,35 @@ display.clear()
 
 
 # ------------------------------------------------------------
+#   BUTTONS HINZUGEFÜGT
+# ------------------------------------------------------------
+button_red = Pin("D9", Pin.IN, Pin.PULL_UP)   # Start
+button_blue = Pin("D8", Pin.IN, Pin.PULL_UP)  # Abbrechen / Zurück
+
+
+def warte_auf_start():
+    """Wartet auf Red zum Starten. Blue zeigt nur 'Abbruch'."""
+    display.clear()
+    typewriter("Press RED", 0, 0)
+    typewriter("to start", 0, 1)
+    print("Warte auf Start...")
+
+    while True:
+        if button_red.value() == 0:
+            print("RED gedrückt → Spiel startet")
+            sleep(0.3)
+            return True
+
+        if button_blue.value() == 0:
+            print("BLUE gedrückt → kein Start")
+            sleep(0.3)
+            return False
+
+        sleep(0.05)
+
+
+
+# ------------------------------------------------------------
 #   LCD-Funktionen
 # ------------------------------------------------------------
 def typewriter(text, col, row, char_delay=0.05):
@@ -52,7 +81,7 @@ def show_progress_bar(fraction, row=1, width=16):
 # ============================================================
 uart = UART(0, tx=Pin("TX"), rx=Pin("RX"))
 player = DFPlayer(uart)
-player.volume = 75
+player.volume = 50
 
 
 # ============================================================
@@ -117,9 +146,6 @@ def victory():
     print("You catched Gengar!")
     player.play_track(1, 5)
 
-    # ----------------------------
-    # Pixel-Farbrotation für 4 Sekunden
-    # ----------------------------
     color_wheel_colors = [
         (255, 0, 0),
         (255, 85, 0),
@@ -132,19 +158,15 @@ def victory():
     ]
 
     start_time = time.ticks_ms()
-    duration_ms = 4000  # 4 Sekunden
+    duration_ms = 4000
 
     while time.ticks_diff(time.ticks_ms(), start_time) < duration_ms:
-        # Farbrotation auf 8 Pixel anwenden
         for index in range(8):
             pixels.set_rgb(index, *color_wheel_colors[index], 100)
         pixels.show()
-
-        # Farben rotieren
         color_wheel_colors.insert(0, color_wheel_colors.pop())
         sleep_ms(50)
 
-    # Nach 4 Sekunden alle Pixel aus
     pixels.set_all_rgb(0, 0, 0)
     pixels.show()
 
@@ -182,35 +204,28 @@ def spiel():
     # 3 Würfe
     for w in range(1, 4):
 
-        # LCD Anzeige
         display.clear()
         typewriter(f"Throw {w}:", 0, 0)
 
         print(f"--- Wurf {w}: du hast 10 Sekunden ---")
 
         wurf_start = time.ticks_ms()
-        wurf_erkannt = False
-        countdown_time = 10000  # 10 Sekunden
+        countdown_time = 10000
 
-        # ------------ Gemeinsame Schleife: LCD + Sensor parallel ------------
         while True:
-            now = time.ticks_ms() #aktuelle Zeit
-            elapsed = time.ticks_diff(now, wurf_start) #vergangene Zeit
+            now = time.ticks_ms()
+            elapsed = time.ticks_diff(now, wurf_start)
 
-            # LCD Fortschritt aktualisieren Fortschrittsbalken
             fraction = 1 - (elapsed / countdown_time)
             show_progress_bar(fraction, row=1)
 
-            # Sensor checken
             values = [s.value() for s in sensors]
-            if any(values): #Vibration erkannt
+            if any(values):
                 print(f"🎯 Wurf {w} erkannt! (+30%)")
                 gesamt += 30
                 blink_pixel()
-                wurf_erkannt = True
                 break
 
-            # Zeit abgelaufen, Keine Vibration erkannt
             if elapsed >= countdown_time:
                 print(f"⏳ Wurf {w}: keine Vibration → 0%")
                 pixels.set_all_rgb(255, 0, 0)
@@ -218,32 +233,26 @@ def spiel():
                 sleep(0.5)
                 pixels.set_all_rgb(0, 0, 0)
                 pixels.show()
-
                 break
 
             sleep(0.05)
 
-        sleep(0.5) 
+        sleep(0.5)
 
-    # --------------------------------------
-    # Ende der Würfe: Ergebnisphase
-    # --------------------------------------
     print(f"\nGesamtpunkte: {gesamt}%")
 
-    # **Direkt fled() aufrufen, wenn kein Treffer**
     if gesamt == 0:
         print("❌ Kein Wurf getroffen! ❌")
         fled()
         return False
 
-    # Sonst normale Ergebnisphase
     hit(times=5, speed=0.3)
     waiting(times=3, speed=0.75)
 
-    zufall = random.randint(0, 100) #zufällige Zahl
+    zufall = random.randint(0, 100)
     print("Zufallswert:", zufall)
 
-    if gesamt >= zufall: #gesamt Punktzahl grösser als Zufallszahl
+    if gesamt >= zufall:
         print("\n🎉 GEWONNEN! 🎉")
         catched()
         victory()
@@ -256,14 +265,12 @@ def spiel():
 
 
 # ============================================================
-# START
+#   MAIN LOOP MIT BUTTON-STARTSYSTEM
 # ============================================================
-if __name__ == "__main__":
-    # ---- Vorab-Hinweis auf LCD ----
-    display.clear()
-    typewriter("The game starts,", 0, 0)
-    typewriter("Be ready", 0, 1)
-    sleep(2)  # 3 Sekunden warten
-
-    print("System bereit – warte auf START...\n")
-    spiel()
+while True:
+    if warte_auf_start():
+        spiel()
+    else:
+        display.clear()
+        typewriter("Canceled", 0, 0)
+        sleep(1)
