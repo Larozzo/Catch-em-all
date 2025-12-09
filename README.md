@@ -37,13 +37,14 @@ To build this project you will need:
 
 ## How to build
 ### Wiring
+![Press Dual Buttons to Start](pictures/Dual Buttons.jpg)
+![Start Display](pictures/Start Display.jpg)
 ![Wiring inside of Pokémon](https://github.com/Larozzo/Catch-em-all/blob/b6b8ff1ec760a5701bde9f4db79130d1c2a10b1c/pictures/Wiring%20inside%20of%20Poke%CC%81mon.jpg)
 ![Vibrationsensor false-bottom box](pictures/Vibrationsensor.jpg)
 ![connect cables with a cable connector](https://github.com/Larozzo/Catch-em-all/blob/b6b8ff1ec760a5701bde9f4db79130d1c2a10b1c/pictures/cable%20connector.jpg)
 
 
-### Uploading the code
-* Copy the content of your `src` from your computer to your board
+### The code
 
 ```
 # ============================================================
