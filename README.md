@@ -1,6 +1,7 @@
 # Our Physical Computing project
 This is a project that emulates a Pokémon being catched with the help of various ArduinoBoards.
 It connects to xyz to show the output on a display.
+![Catch 'em all Project](pictures/Heroshot_1.jpg)
 
 ## Concept
 ### How to Play
@@ -18,6 +19,7 @@ To build this project you will need:
 * USB-C cable
 * Speaker
 * MP 3 Player
+* ArduinoButtons
 * [BerryBase SW-420 Vibrationsensormodule](https://www.berrybase.ch/sw-420-vibrationssensor-modul)
 * 3D printer
 * 3D Filament
@@ -35,7 +37,10 @@ To build this project you will need:
 
 ## How to build
 ### Wiring
-Add photo
+![Wiring inside of Pokémon](pictures/Wiring inside of Pokémon.jpg)
+![Vibrationsensor false-bottom box](pictures/Vibrationsensor.jpg)
+![connect cables with a cable connector](pictures/cable connector.jpg)
+
 
 ### Uploading the code
 * Copy the content of your `src` from your computer to your board
