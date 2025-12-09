@@ -1,12 +1,12 @@
-# Our Physical Computing project
-This is a project that emulates a Pokémon being catched with the help of various ArduinoBoards.
+# Our Physical Computing project "Catch 'em all!"
+This is a project that emulates a Pokémon being caught with the help of various ArduinoBoards.
 It connects to xyz to show the output on a display.
 ![Catch 'em all Project](pictures/Heroshot_1.jpg)
 
 ## Concept
 ### How to Play
 1) While "Throw 1" is being displayed for 10 seconds, try throwing the Pokéball into the box infront of you.
-2) Do the same for Throw 2 and Throw 3.
+2) Repeat the same step for Throw 2 and Throw 3.
 3) If you manage to throw the Pokéball correctly three times, you win and the Pokémon is caught, if not - the Pokémon escapes.
 
 ## Requirements
