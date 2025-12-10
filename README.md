@@ -21,7 +21,7 @@ To build this project you will need:
 * MP 3 Player
 * ArduinoDualButtons
 * [BerryBase SW-420 Vibrationsensormodule](https://www.berrybase.ch/sw-420-vibrationssensor-modul)
-* [3D Pokémon Model](https://cults3d.com/de/modell-3d/kunst/gengar-low-poly-pokemon)
+* [3D Pokémon Model (Gengar in our case)](https://cults3d.com/de/modell-3d/kunst/gengar-low-poly-pokemon)
 * 3D printer
 * 3D Filament
 * 3x Boxes
@@ -38,19 +38,28 @@ To build this project you will need:
 
 ## How to build
 ### Wiring
-Dual Buttons
+Start of by conecting the MP3 Speaker with two ModulinoPixels and then connect those to the Arduino Nano ESP32.  
+Then connect the vibration sensor, Grove RGB LCD Display and Dual Buttons aswell.  
+Get a box that's big enough to act as a podest for your 3D Pokémon.  
+The Modulino DualButtons is the only hardware that should be visible from the outside, so stick it to the base of your podest.
 ![Press Dual Buttons to Start](https://github.com/Larozzo/Catch-em-all/blob/76a4e0d389145904dd29655b7087b15533ca5415/pictures/Dual%20Buttons.jpg)
 
-LCD Display
+
+Cut a rectangle into a cardboard box to serve as an opening for the LCD display.
 ![Start Display](https://github.com/Larozzo/Catch-em-all/blob/f1535e024d39d02377e60e87431e8f6817ea4fc2/pictures/Start%20Display.jpg)
 
-Wiring inside of 3D build
+
+Stick the ModulinoPixels to the eyes with the pixels facing outwards using adhesive tape so that they do not slip.  
+Connect the cables as shown in the picture down below.
 ![Wiring inside of Pokémon](https://github.com/Larozzo/Catch-em-all/blob/b6b8ff1ec760a5701bde9f4db79130d1c2a10b1c/pictures/Wiring%20inside%20of%20Poke%CC%81mon.jpg)
 
-Vibrationsensor inside false-bottom box
+
+Put the vibration sensor in your "hit box" and conceal it under a second false floor to create a false-bottom box (we used another cardboard box).
 ![Vibrationsensor false-bottom box](pictures/Vibrationsensor.jpg)
 
-cable connector
+
+Use cable connectors if your cables are not long enough.  
+Once all cables are connected, you can close the Pokémon and seal it with tape or glue.
 ![connect cables with a cable connector](https://github.com/Larozzo/Catch-em-all/blob/b6b8ff1ec760a5701bde9f4db79130d1c2a10b1c/pictures/cable%20connector.jpg)
 
 
