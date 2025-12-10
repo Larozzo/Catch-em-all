@@ -21,6 +21,7 @@ To build this project you will need:
 * MP 3 Player
 * ArduinoDualButtons
 * [BerryBase SW-420 Vibrationsensormodule](https://www.berrybase.ch/sw-420-vibrationssensor-modul)
+* [3D Pokémon Model](https://cults3d.com/de/modell-3d/kunst/gengar-low-poly-pokemon)
 * 3D printer
 * 3D Filament
 * 3x Boxes
