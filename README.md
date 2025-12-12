@@ -24,7 +24,7 @@ To build this project you will need:
 * [3D Pokémon Model (Gengar in our case)](https://cults3d.com/de/modell-3d/kunst/gengar-low-poly-pokemon)
 * 3D printer
 * 3D Filament
-* 1x Box
+* 3x Boxes
 * 3x Pokéballs
 ### Software
 * [MicroPython](https://micropython.org/)
