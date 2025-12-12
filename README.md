@@ -7,7 +7,7 @@ It connects to xyz to show the output on a display.
 ### How to Play
 1) While "Throw 1" is being displayed for 10 seconds, try throwing the Pokéball into the box infront of you.
 2) Repeat the same step for Throw 2 and Throw 3.
-3) If you manage to throw the Pokéball correctly three times, you win and the Pokémon is caught, if not - the Pokémon escapes.
+3) Landing all three throws increases your chance of catching the Pokémon, but a random value is still used to decide the final outcome — so success is not guaranteed.
 
 ## Requirements
 To build this project you will need:
@@ -18,13 +18,13 @@ To build this project you will need:
 * 2x ModulinoPixels
 * USB-C cable
 * Speaker
-* MP 3 Player
+* MP-3 Player
 * ArduinoDualButtons
 * [BerryBase SW-420 Vibrationsensormodule](https://www.berrybase.ch/sw-420-vibrationssensor-modul)
 * [3D Pokémon Model (Gengar in our case)](https://cults3d.com/de/modell-3d/kunst/gengar-low-poly-pokemon)
 * 3D printer
 * 3D Filament
-* 3x Boxes
+* 1x Box
 * 3x Pokéballs
 ### Software
 * [MicroPython](https://micropython.org/)
