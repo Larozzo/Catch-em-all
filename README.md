@@ -5,7 +5,7 @@ It connects to xyz to show the output on a display.
 
 ## Concept
 ### How to Play
-1) While "Throw 1" is being displayed for 10 seconds, try throwing the Pokéball into the box infront of you.
+1) While "Throw 1" is being displayed for 10 seconds, try throwing the Pokéball into the box in front of you.
 2) Repeat the same step for Throw 2 and Throw 3.
 3) Landing all three throws increases your chance of catching the Pokémon, but a random value is still used to decide the final outcome — so success is not guaranteed.
 
