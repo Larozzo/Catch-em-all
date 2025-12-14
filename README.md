@@ -1,6 +1,6 @@
 # Our Physical Computing project "Catch 'em all!"
 This is a project that emulates a Pokémon being caught with the help of various ArduinoBoards.
-It connects to xyz to show the output on a display.
+It connects to the Arduino Nano ESP32 to show the output on an LCD display.
 ![Catch 'em all Project](pictures/Heroshot_1.jpg)
 
 ## Concept
