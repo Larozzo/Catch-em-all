@@ -3,6 +3,9 @@ This is a project that emulates a Pokémon being caught with the help of various
 It connects to the Arduino Nano ESP32 to show the output on an LCD display.
 ![Catch 'em all Project](https://github.com/Larozzo/Catch-em-all/blob/b76d19aa5b5d3550922d2c4af55c4eebf797c0ef/media/Heroshot_1.jpg)
 
+# Watch our video for a quick introduction
+https://github.com/user-attachments/assets/7389ce73-83ae-4e54-bc2f-5a1f588954cb
+
 ## Concept
 ### How to Play
 1) While "Throw 1" is being displayed for 10 seconds, try throwing the Pokéball into the box in front of you.
@@ -345,6 +348,6 @@ while True:
 ```
 
 * Install the libraries listed above
-* ...
+
 ### Feedback and questions
 If you are interested in this project and need to ask questions get in touch with us via Github.
