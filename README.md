@@ -1,7 +1,7 @@
 # Our Physical Computing project "Catch 'em all!"
 This is a project that emulates a Pokémon being caught with the help of various ArduinoBoards.
 It connects to the Arduino Nano ESP32 to show the output on an LCD display.
-![Catch 'em all Project](pictures/Heroshot_1.jpg)
+![Catch 'em all Project](https://github.com/Larozzo/Catch-em-all/blob/b76d19aa5b5d3550922d2c4af55c4eebf797c0ef/media/Heroshot_1.jpg)
 
 ## Concept
 ### How to Play
@@ -55,7 +55,7 @@ Connect the cables as shown in the picture down below.
 
 
 Put the vibration sensor in your "hit box" and conceal it under a second false floor to create a false-bottom box (we used another cardboard box).
-![Vibrationsensor false-bottom box](pictures/Vibrationsensor.jpg)
+![Vibrationsensor false-bottom box](https://github.com/Larozzo/Catch-em-all/blob/b76d19aa5b5d3550922d2c4af55c4eebf797c0ef/media/Vibrationsensor.jpg)
 
 
 Use cable connectors if your cables are not long enough.  
